@@ -4,7 +4,7 @@ const app = express();
 var MongoClient = require("mongodb").MongoClient;
 var MongoObjectID = require("mongodb").ObjectID;
 
-
+app.use(express.static('public'));
 //
 
 app.use(bodyParser.json());
