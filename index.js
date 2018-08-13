@@ -28,7 +28,7 @@ function getIdentification(req, res) {
   const userId = req.body.conversation.memory.userId.value;
   const userToFind = userId.toUpperCase();
   const docToFind =  { ID: userToFind};
-  MongoClient.connect('mongodb://localhost:27017/tutoriel', function(error, db) {
+  MongoClient.connect('mongodb://mrezzouk:marsem1@ds243041.mlab.com:43041/tutoriel', function(error, db) {
       if (error) throw error;
       var collection = db.collection("customers");
 
@@ -87,52 +87,6 @@ function getIdentification(req, res) {
   db.close();
   });
 }
-
-/*
-function setReplacement(req, res) {
-  const damageValue = req.body.conversation.memory.number.scalar;
-  const userId = req.body.conversation.memory.userId.value;
-  const userToFind = userId.toUpperCase();
-  const docToFind =  { ID: userToFind};
-
-
-
-
-  MongoClient.connect('mongodb://localhost:27017/tutoriel', function(error, db){
-             if (error) throw error;
-             var collection = db.collection("customers");
-             if (damageValue > 2) {
-              res.json({
-                        replies: [
-                          {
-                            type: 'text',
-                            content: 'It seems to me that your screen needs to be replaced.'
-                          },
-                          {
-                            type: 'text',
-                            content: 'Let me check if your phone is still under warranty.'
-                          },
-                          {
-                            type: 'text',
-                            content: '...'
-                          },
-                          {
-                            type: 'text',
-                            content: 'Our records show that your phone is still under warranty'
-                          },
-                          {
-                            type: 'text',
-                            content: 'Just checking the availabitily of the spare parts. '
-                          },
-                          {
-                            type: 'text',
-                            content: 'your screen can be available in 3 days. Do you want me to place the order ?'
-                          }],
-              });
-             }})
-             */
-
-
 
 function setReplacement(req, res) {
   const damageValue = req.body.conversation.memory.number.scalar;
