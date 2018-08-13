@@ -9,7 +9,16 @@
   "author": "marya Rezzouk",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongodb": "^2.2.33"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrezzouk/ItSupport.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrezzouk/ItSupport/issues"
+  },
+  "homepage": "https://github.com/mrezzouk/ItSupport#readme"
 }
