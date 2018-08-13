@@ -4,6 +4,7 @@
   "description": "an api of an IT support chatbot ",
   "main": "index.js",
   "scripts": {
+    "start" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "marya Rezzouk",
