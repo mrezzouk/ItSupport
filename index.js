@@ -109,16 +109,16 @@ function setReplacement(req, res) {
                                  content: 'It seems to me that your screen needs to be replaced.'
                                },
                                {
-                                 "type": "picture",
-                                 "content": "https://i.imgur.com/vEY7Mwt.gif",
-                               },
-                               {
                                  type: 'text',
                                  content: 'Let me check if your phone is still under warranty.'
                                },
                                {
                                  type: 'text',
                                  content: '...'
+                               },
+                               {
+                                 "type": "picture",
+                                 "content": "https://i.imgur.com/vEY7Mwt.gif",
                                },
                                {
                                  type: 'text',
