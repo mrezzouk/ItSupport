@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 var MongoClient = require("mongodb").MongoClient;
 var MongoObjectID = require("mongodb").ObjectID;
+var order = 10221900;
 
 app.use(express.static('public/template'));
 //
@@ -11,6 +12,9 @@ app.use(bodyParser.json());
 // Load routes
 app.post('/Identification', getIdentification);
 app.post('/Replacement', setReplacement);
+app.post('/orderPlacement', setOrderPlacement);
+
+
 
 app.post('/errors', function (req, res) {
   console.error(req.body);
@@ -47,17 +51,17 @@ function getIdentification(req, res) {
                 {
                   type: 'card',
                   content: {
-                    title: `${userInfo.ID}`,
+                    title: `#️⃣ ${userInfo.ID}`,
                     subtitle: 'User Information',
                     imageUrl: '',
                     buttons: [
                       {
-                        title: `Name :${userInfo.name} ${userInfo.surname}`,
+                        title: `😃 ${userInfo.name} ${userInfo.surname}`,
                         type: 'postback',
                         value:  ``,
                       },
                       {
-                        title: `Num: ${userInfo.phoneNumber}`,
+                        title: `☎️ ${userInfo.phoneNumber}`,
                         type: 'postback',
                         value:  ``,
                       }
@@ -109,16 +113,16 @@ function setReplacement(req, res) {
                                  content: 'It seems to me that your screen needs to be replaced.'
                                },
                                {
-                                 "type": "picture",
-                                 "content": "https://i.imgur.com/vEY7Mwt.gif",
-                               },
-                               {
                                  type: 'text',
                                  content: 'Let me check if your phone is still under warranty.'
                                },
                                {
                                  type: 'text',
                                  content: '...'
+                               },
+                               {
+                                 "type": "picture",
+                                 "content": "https://i.imgur.com/vEY7Mwt.gif",
                                },
                                {
                                  type: 'text',
@@ -130,4 +134,65 @@ function setReplacement(req, res) {
              })
            }
          })
+}
+
+function setOrderPlacement(req, res) {
+  const userId = req.body.conversation.memory.userId.value;
+  const userToFind = userId.toUpperCase();
+  const docToFind =  { ID: userToFind};
+  const replies = [];
+
+
+  res.json({
+        replies: [
+          {
+            type: 'picture',
+            content: 'http://livelongsolutions.com/wp-content/uploads/2017/03/delivery-van.gif'
+          },
+          {
+            type: 'text',
+            content: 'Order placed!  '
+          },
+          {
+            type: 'card',
+            content: {
+              title: `🚚 🚚 🚚`,
+              subtitle: 'User Information',
+              imageUrl: '',
+              buttons: [
+                {
+                  title: `PO# :${order +1}`,
+                  type: 'postback',
+                  value:  ``,
+                },
+                {
+                  title: `IT help Desk - 14th Floor`,
+                  type: 'postback',
+                  value:  ``,
+                }
+              ]
+            }
+          },
+          {
+            type: 'text',
+            content: 'An email was sent to your email with all the order information.'
+          },
+          {
+            type: 'quickReplies',
+            content: {
+              title: "Your order will be available within 3 days. You'll be notified as soon as it arrives. Do you need a temporary replacement telepone?",
+              buttons: [
+                {
+                  title: 'yes',
+                  value: 'yes'
+                },
+                {
+                  title: 'no',
+                  value: 'no'
+                }
+              ]
+            }
+          }
+        ]
+   });
 }
